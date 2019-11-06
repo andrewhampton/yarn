@@ -167,12 +167,13 @@ export default class ConsoleReporter extends BaseReporter {
     this.stopProgress();
 
     const totalTime = (this.getTotalTime() / 1000).toFixed(2);
+    const emoji = totalTime < 300 ? '✨' : '🐢'
     let msg = `Done in ${totalTime}s.`;
     if (showPeakMemory) {
       const peakMemory = (this.peakMemory / 1024 / 1024).toFixed(2);
       msg += ` Peak memory usage ${peakMemory}MB.`;
     }
-    this.log(this._prependEmoji(msg, '✨'));
+    this.log(this._prependEmoji(msg, emoji));
   }
 
   log(msg: string, {force = false}: {force?: boolean} = {}) {
